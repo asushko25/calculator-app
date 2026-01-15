@@ -1,30 +1,32 @@
-Column Design Calculator
+# Column Design Calculator
 
-React + TypeScript application for calculating factored loads
+React + TypeScript application for calculating factored loads 
 
-Input data is entered manually and saved in localStorage.
+## Live Demo
 
-Live Demo
+https://asushko25.github.io/calculator-app/
 
-https://asushko25.github.io/calculator-app
+## Tech Stack
+- React
+- TypeScript
+- Vite
+- SCSS
+- Vitest
 
-Getting Started
-1. Clone the repository
+## Getting Started
+1. Clone the repository:
 git clone https://github.com/asushko25/calculator-app.git
 cd calculator-app
 
-2. Install dependencies
+Install dependencies:
 npm install
 
-3. Run the development server
+Run the development server:
 npm run dev
 
-
-The app will be available at:
-http://localhost:5173
+The application will be available at http://localhost:5173
 
 Tests
-
 Run unit tests with:
 
 npm run test
