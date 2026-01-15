@@ -4,26 +4,22 @@ import { loadData, saveData, createDefaultData } from '../domain/storage';
 
 export function useAppData() {
   const initialData = loadData();
+  const defaultData = createDefaultData();
+  
   const [loads, setLoads] = useState<ConcentratedLoad[]>(
-    initialData.loads && initialData.loads.length > 0 
-      ? initialData.loads 
-      : createDefaultData().loads
+    initialData.loads.length > 0 ? initialData.loads : defaultData.loads
   );
   const [combinations, setCombinations] = useState<LoadCombination[]>(
-    initialData.combinations && initialData.combinations.length > 0 
-      ? initialData.combinations 
-      : createDefaultData().combinations
+    initialData.combinations.length > 0 ? initialData.combinations : defaultData.combinations
   );
 
   useEffect(() => {
-    if (loads.length === 0 || combinations.length === 0) {
-      const defaultData = createDefaultData();
-      if (loads.length === 0) {
-        setLoads(defaultData.loads);
-      }
-      if (combinations.length === 0) {
-        setCombinations(defaultData.combinations);
-      }
+    const defaultData = createDefaultData();
+    if (loads.length === 0) {
+      setLoads(defaultData.loads);
+    }
+    if (combinations.length === 0) {
+      setCombinations(defaultData.combinations);
     }
   }, []);
 

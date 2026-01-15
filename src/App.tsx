@@ -26,29 +26,31 @@ function App() {
 
   const handleLoadChange = useCallback(
     (loadCase: LoadCaseLabel, field: LoadField, value: number) => {
-      setLoads((prevLoads) =>
-        prevLoads.map((load) =>
-          load.loadCase === loadCase ? { ...load, [field]: value } : load
-        )
-      );
+      const updatedLoads = loads.map((load) => {
+        if (load.loadCase === loadCase) {
+          return { ...load, [field]: value };
+        }
+        return load;
+      });
+      setLoads(updatedLoads);
     },
-    [setLoads]
+    [loads, setLoads]
   );
 
   const handleCombinationChange = useCallback(
     (label: string, loadCase: LoadCaseLabel, value: number) => {
-      setCombinations((prevCombinations) =>
-        prevCombinations.map((combination) =>
-          combination.label === label
-            ? {
-                ...combination,
-                factors: { ...combination.factors, [loadCase]: value },
-              }
-            : combination
-        )
-      );
+      const updatedCombinations = combinations.map((combination) => {
+        if (combination.label === label) {
+          return {
+            ...combination,
+            factors: { ...combination.factors, [loadCase]: value },
+          };
+        }
+        return combination;
+      });
+      setCombinations(updatedCombinations);
     },
-    [setCombinations]
+    [combinations, setCombinations]
   );
 
   const handleCalculate = useCallback(() => {
